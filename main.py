@@ -171,7 +171,7 @@ if st.session_state.conversations:
         st.markdown("---")
 
 
-with open('cv.txt') as f:
+with open('code.txt') as f:
    st.download_button('Download CSV', f)
    st.write('Thanks for downloading!')
 
