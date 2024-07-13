@@ -26,6 +26,29 @@ st.title("💼 CodeWithJoe ChatBot")
 st.write("ASk me anything")
 
 
+# Custom CSS
+# st.markdown("""
+# <style>
+#     .reportview-container {
+#         background: #f0f2f6
+#     }
+#     .main {
+#         background-color: #ffffff;
+#         padding: 20px;
+#         border-radius: 10px;
+#         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+#     }
+#     h1 {
+#         color: #2c3e50;
+#     }
+#     .stButton>button {
+#         background-color: #3498db;
+#         color: white;
+#         width: 100%;
+#     }
+# </style>
+# """, unsafe_allow_html=True)
+
 # Sidebar
 st.sidebar.title("About")
 st.sidebar.info(
@@ -51,7 +74,7 @@ st.sidebar.info(
 
 
 # Use environment variable for API key
-ANTHROPIC_API_KEY = os.environ.get("")
+ANTHROPIC_API_KEY = os.environ.get("ClaudeAI- API Key")
 if not ANTHROPIC_API_KEY:
     ANTHROPIC_API_KEY = st.text_input("Enter your Anthropic API Key:", type="password")
 
@@ -99,17 +122,37 @@ def get_claude_response(prompt, cv_content):
 cv_path = "code.txt"  # Hardcoded path to the CV file
 cv_content = load_cv(cv_path)
 
-# Create a form for user input
+
+# Predefined questions
+predefined_questions = [
+    "What are CodeWithJoe's key skills?",
+    "What is CodeWithJoe's educational background?",
+    "What is CodeWithJoe's most recent work experience?"
+]
+
+# Create buttons for predefined questions
+st.subheader("Quick Questions:")
+cols = st.columns(len(predefined_questions))
+for idx, question in enumerate(predefined_questions):
+    if cols[idx].button(question, key=f"pred_q_{idx}"):
+        response = get_claude_response(question, cv_content)
+        st.markdown(f"**Q:** {question}")
+        st.markdown(f"**A:** {response}")
+        st.markdown("---")
+
+# Create a form for custom user input
 with st.form(key='user_input_form'):
-    user_input = st.text_input("Ask me anything about CodeWithJoe's YouTube Channel:")
+    st.subheader("Ask Your Own Question:")
+    user_input = st.text_input("Enter your question about CodeWithJoe's YoutubeChannel:")
     submit_button = st.form_submit_button(label='Submit Question')
 
 # Handle form submission
 if submit_button:
     if user_input:
         response = get_claude_response(user_input, cv_content)
-        st.markdown("### Claude's Response:")
-        st.markdown(response)
+        st.markdown(f"**Q:** {user_input}")
+        st.markdown(f"**A:** {response}")
+        st.markdown("---")
     else:
         st.warning("Please enter a question before submitting.")
 
@@ -121,14 +164,11 @@ if submit_button and user_input:
     st.session_state.conversations.append((user_input, response))
 
 if st.session_state.conversations:
-    st.markdown("### Previous Conversations:")
-    for q, a in reversed(st.session_state.conversations[:-1]):
+    st.subheader("Previous Conversations:")
+    for q, a in reversed(st.session_state.conversations):
         st.markdown(f"**Q:** {q}")
         st.markdown(f"**A:** {a}")
         st.markdown("---")
-
-
-
 
 
 with open('cv.txt') as f:
@@ -152,4 +192,3 @@ st.markdown("---")
 st.markdown("Created with ❤️ by [CodeWithJoe](https://codewithjoe.net)")
 
 
-#https://www.youtube.com/@CodeWithJoe
