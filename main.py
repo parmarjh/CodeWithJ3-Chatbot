@@ -4,7 +4,7 @@ from anthropic import Anthropic
 
 # Streamlit page configuration
 st.set_page_config(
-    page_title="CodeWithJoe - CV ChatBot",
+    page_title="CodeWithJatin - CV ChatBot",
     page_icon="💼",
     layout="centered",
     initial_sidebar_state="expanded",
@@ -14,7 +14,7 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("Hi :wave:")
-    st.title("I'm CodeWithJoe")
+    st.title("I'm CodeWithJatin")
 
 with col2:
     st.image("logo.png")
@@ -22,7 +22,7 @@ with col2:
 st.title(" ")
 
 # Main content
-st.title("💼 CodeWithJoe ChatBot")
+st.title("💼 CodeWithJatin ChatBot")
 st.write("ASk me anything")
 
 
@@ -52,11 +52,11 @@ st.write("ASk me anything")
 # Sidebar
 st.sidebar.title("About")
 st.sidebar.info(
-    "This chatbot leverages Claude AI to answer your questions about CodeWithJoe's YouTube channel. "
+    "This chatbot leverages Claude AI to answer your questions about CodeWithJatin's YouTube channel. "
     "Feel free to ask about his skills, experience, or background!"
 )
 
-st.sidebar.title("CodeWithJoe")
+st.sidebar.title("CodeWithJatin")
 st.sidebar.info(
     "Discover more exciting projects and tutorials at [CodeWithJoe.net](https://codewithjoe.net)!"
 )
@@ -64,10 +64,10 @@ st.sidebar.info(
 st.sidebar.title("Hire Me")
 st.sidebar.info(
     """
-    I'm Joe, a seasoned Web3 developer since 2018, with expertise in Ethereum, EVMs, and machine learning. 
+    I'm Jatin, a seasoned Ai ml genai  llm Web3 developer since 2018, with expertise in Ethereum, EVMs,genai, llm chatbot and machine learning. 
     I specialize in creating custom Python Web3 Telegram bots, trading bots, and offer consultation and educational services. 
     Available for project-based, hourly, or consultation work.
-    Reach out via my [YouTube Channel](https://www.youtube.com/@CodeWithJoe).
+    Reach out via my [YouTube Channel](https://www.youtube.com/@funinaiofficial).
     """
 )
 
@@ -189,6 +189,6 @@ with col4:
     st.video("https://www.youtube.com/channel/UCdgU4pljNproO0RQVbT5QKg")
 # Footer
 st.markdown("---")
-st.markdown("Created with ❤️ by [CodeWithJoe](https://codewithjoe.net)")
+st.markdown("Created with ❤️ by [CodeWithJ3](https://codewithjatin.net)")
 
 
